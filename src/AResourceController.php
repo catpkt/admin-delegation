@@ -23,7 +23,7 @@ use FenzHelpers\TGetter;
  *
  * @method setSubResource( self$subResource ):self                                           添加子资源
  */
-abstract class AResourceController
+abstract class AResourceController implements Helpers\IResourceMeta
 {
 
 	/**

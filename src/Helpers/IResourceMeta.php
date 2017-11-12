@@ -1,0 +1,10 @@
+<?php
+
+namespace CatPKT\AdminDelegation\Helpers;
+
+////////////////////////////////////////////////////////////////
+
+interface IResourceMeta
+{
+	#
+}
