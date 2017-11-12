@@ -55,7 +55,34 @@ class HttpHandler
 	 */
 	public function handle( Request$request ):Response
 	{
-		#
+		$response= $this->handleByMethod( $headers['Method']??$request->getMethod(), $request );
+
+		$response->headers->set( 'Access-Control-Allow-Origin', '*' );
+
+		return $response;
+	}
+
+	/**
+	 * Method handleByMethod
+	 *
+	 * @access private
+	 *
+	 * @param  string $method
+	 * @param  Request $request
+	 *
+	 * @return Response
+	 */
+	private function handleByMethod( string$method, Request$request ):Response
+	{
+		$headers= $this->encryptor->decrypt( $request->headers->get( 'Cat-Admin-Headers' ) );
+
+		$method= 'method_'.($headers['Method']??$request->getMethod());
+
+		return (
+			method_exists( $this, $method )
+			? $this->{$method}( $headers, $request )
+			: new Response( 'What are you doing?', 405 )
+		);
 	}
 
 }
