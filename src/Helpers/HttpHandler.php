@@ -55,7 +55,36 @@ class HttpHandler
 	 */
 	public function handle( Request$request ):Response
 	{
-		$response= $this->handleByMethod( $headers['Method']??$request->getMethod(), $request );
+		try{
+			$response= $this->handleByMethod( $headers['Method']??$request->getMethod(), $request );
+		}
+		catch( E\NotFound$e )
+		{
+			return new Response( 'What you are looking for is not exists.', 404 );
+		}
+		catch( CPE\DecryptException$e )
+		{
+			return new Response( 'You are not welcome. Just go away.', 403 );
+		}
+		catch( E\ValidateFailed$e )
+		{
+			return new Response( ($this->encryptor)( $e->getErrors() ), 422 );
+		}
+		catch( CPE\EncryptException$e )
+		{
+			return new Response( 'Crying.', 555 );
+		}
+		catch( \Throwable$e )
+		{
+			return new Response( ($this->encryptor)( [
+				'exception'=> get_class( $e ),
+				'message'=> $e->getMessage(),
+				'code'=> $e->getCode(),
+				'file'=> $e->getFile(),
+				'line'=> $e->getLine(),
+				'trace'=> array_map( function( $trace ){  unset( $trace['args'] );  return $trace;  }, $e->getTrace() ),
+			] ), 500 );
+		}
 
 		$response->headers->set( 'Access-Control-Allow-Origin', '*' );
 
