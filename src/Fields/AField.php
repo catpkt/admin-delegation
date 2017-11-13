@@ -153,4 +153,19 @@ abstract class AField
 		return $this->rules;
 	}
 
+	/**
+	 * Method getRule
+	 *
+	 * @access public
+	 *
+	 * @param string $name
+	 * @param mixed $default
+	 *
+	 * @return mixed
+	 */
+	public function getRule( string$name, $default=null )
+	{
+		return $this->rules[$name]??$default;
+	}
+
 }
