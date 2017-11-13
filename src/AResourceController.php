@@ -89,6 +89,20 @@ abstract class AResourceController implements Helpers\IResourceMeta
 	abstract public function list( IResource$owner=null, int$limit, int$offset=0, array$filters=[] ):array;
 
 	/**
+	 * 按条件统计资源
+	 *
+	 * @abstract
+	 *
+	 * @access public
+	 *
+	 * @param  ?IResource $owner  父资源
+	 * @param  array $filters     过滤规则
+	 *
+	 * @return int                资源数量
+	 */
+	abstract public function count( IResource$owner=null, array$filters=[] ):int;
+
+	/**
 	 * 获取单个资源
 	 *
 	 * @abstract

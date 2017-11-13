@@ -159,6 +159,25 @@ class HttpHandler
 	}
 
 	/**
+	 * Method method_COUNT
+	 *
+	 * @access protected
+	 *
+	 * @param  array $headers
+	 * @param  Request $request
+	 *
+	 * @return Response
+	 */
+	protected function method_COUNT( array$headers, Request$request ):Response
+	{
+		list( $controller, $resource, )= $this->meta->loadController( $headers['Resource-Path'] );
+
+		$count= $controller->count( $resource, $headers['Filters']??[] );
+
+		return new Response( ($this->encryptor)( $count ) );
+	}
+
+	/**
 	 * Method method_GET
 	 *
 	 * @access protected

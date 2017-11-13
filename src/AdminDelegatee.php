@@ -79,6 +79,24 @@ class AdminDelegatee
 	}
 
 	/**
+	 * Method count
+	 *
+	 * @access public
+	 *
+	 * @param Helpers\ResourceMeta $resourceMeta
+	 * @param Helpers\Resource $owner
+	 * @param array $filters
+	 *
+	 * @return int
+	 */
+	public function count( Helpers\ResourceMeta$resourceMeta, Helpers\Resource$owner=null, array$filters=[] ):int
+	{
+		$response= $this->makeRequest( 'COUNT', $resourceMeta, [ 'Filters'=>$filters, ] )->get();
+
+		return $this->handleResponse( $response );
+	}
+
+	/**
 	 * Method get
 	 *
 	 * @access public
