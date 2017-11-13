@@ -25,7 +25,7 @@ use FenzHelpers\TGetter;
  * $method  model()             增加一个 模型 字段
  * $method  addField( AField )  增加一个字段
  */
-final class FieldSet
+final class FieldSet implements \IteratorAggregate
 {
 
 	/**
@@ -266,6 +266,18 @@ final class FieldSet
 			return $field->name;
 
 		}, $this->fields );
+	}
+
+	/**
+	 * Method getIterator
+	 *
+	 * @access public
+	 *
+	 * @return \ArrayIterator
+	 */
+	public function getIterator():\ArrayIterator
+	{
+		return new \ArrayIterator( $this->fields );
 	}
 
 }
