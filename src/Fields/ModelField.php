@@ -10,7 +10,7 @@ namespace CatPKT\AdminDelegation\Fields;
  *
  * @method  showInList()   在列表中显示字段
  */
-class StringField extends AField
+class ModelField extends AField
 {
 
 	/**

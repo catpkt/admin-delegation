@@ -9,7 +9,7 @@ namespace CatPKT\AdminDelegation\Fields;
  *
  * @method  showInList()   在列表中显示字段
  */
-class BoolField extends AField
+class AreaField extends AField
 {
 
 	/**
