@@ -205,7 +205,6 @@ class AdminDelegatee
 			throw new Exceptions\Unknown( $e );
 		}
 
-		echo $response->body;
 		return $this->encryptor->decrypt( $response->body );
 	}
 
