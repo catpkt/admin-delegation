@@ -252,6 +252,8 @@ final class FieldSet implements \IteratorAggregate
 	 * └─────────────────────────────┘
 	\*/
 
+	use TGetter;
+
 	/**
 	 * Method getKeys
 	 *
@@ -278,6 +280,20 @@ final class FieldSet implements \IteratorAggregate
 	public function getIterator():\ArrayIterator
 	{
 		return new \ArrayIterator( $this->fields );
+	}
+
+	/**
+	 * 列表中显示的字段
+	 *
+	 * @access public
+	 *
+	 * @return array
+	 */
+	public function getListable():array
+	{
+		return array_filter( $this->fields, function( AField$field ){
+			return $field->getRule( 'show_in_list', false );
+		} );
 	}
 
 }
