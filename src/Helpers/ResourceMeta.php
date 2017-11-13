@@ -34,7 +34,7 @@ class ResourceMeta implements IResourceMeta
 	 *
 	 * @access protected
 	 *
-	 * @var    Fields\FieldSet
+	 * @var    __\Fields\FieldSet
 	 */
 	protected $fields;
 
@@ -111,9 +111,9 @@ class ResourceMeta implements IResourceMeta
 	 *
 	 * @access public
 	 *
-	 * @return Fields\FieldSet
+	 * @return __\Fields\FieldSet
 	 */
-	public function getFields():Fields\FieldSet
+	public function getFields():__\Fields\FieldSet
 	{
 		return $this->fields;
 	}
