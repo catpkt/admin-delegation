@@ -3,13 +3,11 @@
 namespace CatPKT\AdminDelegation\Helpers;
 
 use CatPKT\AdminDelegation as __;
-use FenzHelpers\TGetter;
 
 ////////////////////////////////////////////////////////////////
 
-class Resource implements __\IResource
+class Resource implements __\IResource, ArrayAccess
 {
-	use TGetter;
 
 	/**
 	 * Var id
@@ -79,6 +77,88 @@ class Resource implements __\IResource
 	public function getData():array
 	{
 		return $this->data;
+	}
+
+	/**
+	 * Method __get
+	 *
+	 * @access public
+	 *
+	 * @param  string $property
+	 *
+	 * @return mixed
+	 */
+	public function __get( string$property )
+	{
+		if( 'id'===$property )
+		{
+			return $this->id;
+		}
+		else
+		{
+			return $this->data[$property]??null;
+		}
+	}
+
+	/**
+	 * Method offsetExists
+	 *
+	 * @access public
+	 *
+	 * @param  string $offset
+	 *
+	 * @return bool
+	 */
+	public function offsetExists( string$offset ):bool
+	{
+		if( 'id'===$offset ) return true;
+
+		return array_key_exists( $offset, $this->data );
+	}
+
+	/**
+	 * Method offsetGet
+	 *
+	 * @access public
+	 *
+	 * @param  string $offset
+	 *
+	 * @return mixed
+	 */
+	public function offsetGet( string$offset )
+	{
+		if( 'id'===$offset ) return $this->id;
+
+		return $this->data[$offset]??null;
+	}
+
+	/**
+	 * Method offsetSet
+	 *
+	 * @access public
+	 *
+	 * @param  string $offset
+	 * @param  mixed $value
+	 *
+	 * @return viod
+	 */
+	public function offsetSet( string$offset, $value )
+	{
+		$this->data[$offset]= $value;
+	}
+
+	/**
+	 * Method offsetUnset
+	 *
+	 * @access public
+	 *
+	 * @param  string $offset
+	 *
+	 * @return viod
+	 */
+	public function offsetUnset( string$offset )
+	{
+		unset( $this->data[$offset] );
 	}
 
 }
