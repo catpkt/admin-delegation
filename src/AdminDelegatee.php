@@ -61,19 +61,20 @@ class AdminDelegatee
 	 *
 	 * @access public
 	 *
-	 * @param Helpers\ResourceMeta $resourceMeta
-	 * @param Helpers\Resource $owner
+	 * @param Helpers\Path $path
 	 * @param int $take
 	 * @param int $skip
 	 * @param array $filters
 	 *
 	 * @return array
 	 */
-	public function list( Helpers\ResourceMeta$resourceMeta, Helpers\Resource$owner=null, int$take, int$skip=0, array$filters=[] ):array
+	public function list( Helpers\Path$path, int$take, int$skip=0, array$filters=[] ):array
 	{
-		$response= $this->makeRequest( 'LIST', $resourceMeta, [ 'Take'=>$take, 'Skip'=>$skip, 'Filters'=>$filters, ] )->get();
+		$response= $this->makeRequest( 'LIST', $path, [ 'Take'=>$take, 'Skip'=>$skip, 'Filters'=>$filters, ] )->get();
 
 		$data= $this->handleResponse( $response );
+
+		$resourceMeta= $this->loadResourceMeta( $path );
 
 		return array_map( function( $record )use( $resourceMeta ){  return new Helpers\Resource( $resourceMeta, $record['id'], $record['data'] );  }, $data );
 	}
@@ -83,15 +84,14 @@ class AdminDelegatee
 	 *
 	 * @access public
 	 *
-	 * @param Helpers\ResourceMeta $resourceMeta
-	 * @param Helpers\Resource $owner
+	 * @param Helpers\Path $path
 	 * @param array $filters
 	 *
 	 * @return int
 	 */
-	public function count( Helpers\ResourceMeta$resourceMeta, Helpers\Resource$owner=null, array$filters=[] ):int
+	public function count( Helpers\Path$path, array$filters=[] ):int
 	{
-		$response= $this->makeRequest( 'COUNT', $resourceMeta, [ 'Filters'=>$filters, ] )->get();
+		$response= $this->makeRequest( 'COUNT', $path, [ 'Filters'=>$filters, ] )->get();
 
 		return $this->handleResponse( $response );
 	}
@@ -101,17 +101,18 @@ class AdminDelegatee
 	 *
 	 * @access public
 	 *
-	 * @param Helpers\ResourceMeta $resourceMeta
-	 * @param Helpers\Resource $owner
+	 * @param Helpers\Path $path
 	 * @param mixed $id
 	 *
 	 * @return Helpers\Resource
 	 */
-	public function get( Helpers\ResourceMeta$resourceMeta, Helpers\Resource$owner=null, $id ):Helpers\Resource
+	public function get( Helpers\Path$path, $id ):Helpers\Resource
 	{
-		$response= $this->makeRequest( 'GET', $resourceMeta, [ 'Response-Id'=>$id, ] )->get();
+		$response= $this->makeRequest( 'GET', $path, [ 'Response-Id'=>$id, ] )->get();
 
 		$record= $this->handleResponse( $response );
+
+		$resourceMeta= $this->loadResourceMeta( $path );
 
 		return new Helpers\Resource( $resourceMeta, $record['id'], $record['data'] );
 	}
@@ -121,15 +122,14 @@ class AdminDelegatee
 	 *
 	 * @access public
 	 *
-	 * @param Helpers\ResourceMeta $resourceMeta
-	 * @param Helpers\Resource $owner
+	 * @param Helpers\Path $path
 	 * @param array $data
 	 *
 	 * @return mixed    资源ID
 	 */
-	public function create( Helpers\ResourceMeta$resourceMeta, Helpers\Resource$owner=null, array$data )
+	public function create( Helpers\Path$path, array$data )
 	{
-		$response= $this->makeRequest( 'POST', $resourceMeta )->post( ($this->encryptor)( $data ) );
+		$response= $this->makeRequest( 'POST', $path )->post( ($this->encryptor)( $data ) );
 
 		return $this->handleResponse( $response );
 	}
@@ -139,16 +139,15 @@ class AdminDelegatee
 	 *
 	 * @access public
 	 *
-	 * @param Helpers\ResourceMeta $resourceMeta
-	 * @param Helpers\Resource $owner
+	 * @param Helpers\Path $path
 	 * @param mixed $id
 	 * @param array $data
 	 *
 	 * @return bool
 	 */
-	public function update( Helpers\ResourceMeta$resourceMeta, Helpers\Resource$owner=null, $id, array$data ):bool
+	public function update( Helpers\Path$path, $id, array$data ):bool
 	{
-		$response= $this->makeRequest( 'PATCH', $resourceMeta, [ 'Response-Id'=>$id, ] )->patch( ($this->encryptor)( $data ) );
+		$response= $this->makeRequest( 'PATCH', $path, [ 'Response-Id'=>$id, ] )->patch( ($this->encryptor)( $data ) );
 
 		return $this->handleResponse( $response );
 	}
@@ -158,15 +157,14 @@ class AdminDelegatee
 	 *
 	 * @access public
 	 *
-	 * @param Helpers\ResourceMeta $resourceMeta
-	 * @param Helpers\Resource $owner
+	 * @param Helpers\Path $path
 	 * @param mixed ...$ids
 	 *
 	 * @return int
 	 */
-	public function delete( Helpers\ResourceMeta$resourceMeta, Helpers\Resource$owner=null, ...$ids ):int
+	public function delete( Helpers\Path$path, ...$ids ):int
 	{
-		$response= $this->makeRequest( 'DELETE', $resourceMeta, [ 'Response-Ids'=>$ids, ] )->delete();
+		$response= $this->makeRequest( 'DELETE', $path, [ 'Response-Ids'=>$ids, ] )->delete();
 
 		return $this->handleResponse( $response );
 	}
@@ -177,18 +175,32 @@ class AdminDelegatee
 	 * @access protected
 	 *
 	 * @param  string $method
-	 * @param  Helpers\ResourceMeta $resourceMeta
+	 * @param  ?Helpers\Path $path
 	 * @param  array $headers
 	 *
 	 * @return Request
 	 */
-	protected function makeRequest( string$method, Helpers\ResourceMeta$resourceMeta=null, array$headers=[] ):Request
+	protected function makeRequest( string$method, Helpers\Path$path=null, array$headers=[] ):Request
 	{
 		$headers['Method']= $method;
 
-		$resourceMeta && $headers['Resource-Path']= new Helpers\Path( $resourceMeta->name );
+		$path && $headers['Resource-Path']= $path;
 
 		return HTTP::url( $this->uri )->header( 'Cat-Admin-Headers', ($this->encryptor)( $headers ) );
+	}
+
+	/**
+	 * Method loadResourceMeta
+	 *
+	 * @access public
+	 *
+	 * @param  Helpers\Path $path
+	 *
+	 * @return Helpers\ResourceMeta
+	 */
+	public function loadResourceMeta( Helpers\Path$path ):Helpers\ResourceMeta
+	{
+		return $this->getMeta()->loadController( $path )[0];
 	}
 
 	/**
