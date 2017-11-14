@@ -159,11 +159,11 @@ abstract class AResourceController implements Helpers\IResourceMeta
 	 * @access public
 	 *
 	 * @param  ?\CatPKT\AdminDelegation\IResource $owner  父资源
-	 * @param  mixed ...$id
+	 * @param  mixed ...$ids
 	 *
 	 * @return int                成功删除的数据条数
 	 */
-	abstract public function delete( \CatPKT\AdminDelegation\IResource$owner=null, ...$id ):int;
+	abstract public function delete( \CatPKT\AdminDelegation\IResource$owner=null, ...$ids ):int;
 
 	/**
 	 * 可用的操作
