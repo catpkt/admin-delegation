@@ -80,6 +80,18 @@ class Resource implements __\IResource, \ArrayAccess
 	}
 
 	/**
+	 * Method __toString
+	 *
+	 * @access public
+	 *
+	 * @return string
+	 */
+	public function __toString():string
+	{
+		return $this->id;
+	}
+
+	/**
 	 * Method __get
 	 *
 	 * @access public
@@ -90,14 +102,7 @@ class Resource implements __\IResource, \ArrayAccess
 	 */
 	public function __get( string$property )
 	{
-		if( 'id'===$property )
-		{
-			return $this->id;
-		}
-		else
-		{
-			return $this->data[$property]??null;
-		}
+		return $this->offsetGet( $property );
 	}
 
 	/**
