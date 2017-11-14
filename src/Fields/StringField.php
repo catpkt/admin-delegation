@@ -82,7 +82,7 @@ class StringField extends AField
 	 */
 	public function asEmail():self
 	{
-		$this->rules['type']= 'tel';
+		$this->rules['type']= 'email';
 
 		return $this;
 	}
