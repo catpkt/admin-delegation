@@ -193,9 +193,9 @@ abstract class AResourceController implements Helpers\IResourceMeta
 	 *
 	 * @param  self ...$subResources
 	 *
-	 * @return static
+	 * @return void
 	 */
-	final public function setSubResource( self...$subResources ):self
+	final public function setSubResource( self...$subResources )
 	{
 		foreach( $subResources as $subResource )
 		{
