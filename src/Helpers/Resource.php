@@ -109,7 +109,7 @@ class Resource implements __\IResource, \ArrayAccess
 	 *
 	 * @return bool
 	 */
-	public function offsetExists( string$offset ):bool
+	public function offsetExists( $offset ):bool
 	{
 		if( 'id'===$offset ) return true;
 
@@ -125,7 +125,7 @@ class Resource implements __\IResource, \ArrayAccess
 	 *
 	 * @return mixed
 	 */
-	public function offsetGet( string$offset )
+	public function offsetGet( $offset )
 	{
 		if( 'id'===$offset ) return $this->id;
 
@@ -142,7 +142,7 @@ class Resource implements __\IResource, \ArrayAccess
 	 *
 	 * @return viod
 	 */
-	public function offsetSet( string$offset, $value )
+	public function offsetSet( $offset, $value )
 	{
 		$this->data[$offset]= $value;
 	}
@@ -156,7 +156,7 @@ class Resource implements __\IResource, \ArrayAccess
 	 *
 	 * @return viod
 	 */
-	public function offsetUnset( string$offset )
+	public function offsetUnset( $offset )
 	{
 		unset( $this->data[$offset] );
 	}
