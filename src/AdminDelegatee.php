@@ -223,7 +223,13 @@ class AdminDelegatee
 			throw new Exceptions\Unknown( $e );
 		}
 
-		return $this->encryptor->decrypt( $response->body );
+		try{
+			return $this->encryptor->decrypt( $response->body );
+		}
+		catch( CPE\DecryptException$e )
+		{
+			throw new Exceptions\Unknown( $response->body );
+		}
 	}
 
 }
