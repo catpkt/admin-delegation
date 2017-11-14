@@ -2,7 +2,6 @@
 
 namespace CatPKT\AdminDelegation;
 
-use CatPKT\Encryptor\IEncryptor;
 use Symfony\Component\HttpFoundation\{  Request,  Response  };
 
 ////////////////////////////////////////////////////////////////
@@ -47,9 +46,9 @@ abstract class AAdminDelegator
 	 *
 	 * @access protected
 	 *
-	 * @return IEncryptor
+	 * @return \CatPKT\Encryptor\IEncryptor
 	 */
-	abstract protected function getEncryptor():IEncryptor;
+	abstract protected function getEncryptor():\CatPKT\Encryptor\IEncryptor;
 
 	/**
 	 * 元数据
@@ -60,7 +59,7 @@ abstract class AAdminDelegator
 	 *
 	 * @return Meta
 	 */
-	abstract protected function makeMeta():Meta;
+	abstract protected function makeMeta():\CatPKT\AdminDelegation\Meta;
 
 	/**
 	 * 元数据的版本
