@@ -79,7 +79,7 @@ class ResourceMeta implements IResourceMeta
 		$this->fields=           $controller->fields;
 		$this->isStable=         $controller->isStable;
 		$this->forbiddenActions= $controller->forbiddenActions;
-		$this->subResources=     $controller->subResources;
+		$this->subResources=     array_map( function( $resourceController ){  return new self( $resourceController );  }, $controller->subResources );
 	}
 
 	/**
