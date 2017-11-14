@@ -154,4 +154,35 @@ class ResourceMeta implements IResourceMeta
 		return $this->subResources;
 	}
 
+	/**
+	 * 获取子资源控制器
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 *
+	 * @return static
+	 */
+	final public function getSubResource( string$name ):self
+	{
+		if(!( isset( $this->subResources[$name] ) ))
+		{
+			throw new Exceptions\NotFound();
+		}
+
+		return $this->subResources[$name];
+	}
+
+	/**
+	 * Method get
+	 *
+	 * @access public
+	 *
+	 * @return viod
+	 */
+	public function get()
+	{
+		return null;
+	}
+
 }

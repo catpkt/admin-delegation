@@ -296,4 +296,18 @@ final class FieldSet implements \IteratorAggregate
 		} );
 	}
 
+	/**
+	 * 详情中显示的字段
+	 *
+	 * @access public
+	 *
+	 * @return array
+	 */
+	public function getShowable():array
+	{
+		return array_filter( $this->fields, function( AField$field ){
+			return !$field->getRule( 'hidden', false );
+		} );
+	}
+
 }

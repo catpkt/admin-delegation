@@ -118,6 +118,18 @@ abstract class AField
 	}
 
 	/**
+	 * Method getType
+	 *
+	 * @access public
+	 *
+	 * @return string
+	 */
+	public function getType():string
+	{
+		return $this->rules['type'];
+	}
+
+	/**
 	 * Method getName
 	 *
 	 * @access public
