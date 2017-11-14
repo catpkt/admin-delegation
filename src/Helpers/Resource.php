@@ -6,7 +6,7 @@ use CatPKT\AdminDelegation as __;
 
 ////////////////////////////////////////////////////////////////
 
-class Resource implements __\IResource, ArrayAccess
+class Resource implements __\IResource, \ArrayAccess
 {
 
 	/**
