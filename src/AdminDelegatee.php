@@ -232,4 +232,24 @@ class AdminDelegatee
 		}
 	}
 
+	/**
+	 * Method debugConnection
+	 *
+	 * @access public
+	 *
+	 * @return mixed
+	 */
+	public function debugConnection()
+	{
+		try{
+			$this->getMeta();
+		}
+		catch( \Throwable$e )
+		{
+			return $e;
+		}
+
+		return null;
+	}
+
 }
