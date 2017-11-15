@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\{  Request,  Response  };
  * @abstract makeMeta():\CatPKT\AdminDelegation\Meta      提供 元数据
  *
  *
+ * 支持全局拥有者，适用于整个后台的资源都属于某一资源的场景，通过覆盖以下方法使用。
+ *
+ * @overridable getGlobalOwner( Request$request　):?IResource;   获取全局拥有者
+ *
+ *
  * 本类提供了缓存策略，用于避免反复构造 Meta 。若要使用，覆盖下列方法即可。
  *
  * @overridable getVersion():string;                      元数据版本
@@ -36,7 +41,13 @@ abstract class AAdminDelegator
 	 */
 	final public function handle( Request$request ):Response
 	{
-		return (new Helpers\HttpHandler( $this->getEncryptor(), $this->getMeta() ))->handle( $request );
+		$meta= $this->getMeta();
+
+		$meta->setGlobalOwner( $this->getGlobalOwner( $request ) );
+
+		$handler= new Helpers\HttpHandler( $this->getEncryptor(), $meta );
+
+		return $handler->handle( $request );
 	}
 
 	/**
@@ -60,6 +71,20 @@ abstract class AAdminDelegator
 	 * @return Meta
 	 */
 	abstract protected function makeMeta():\CatPKT\AdminDelegation\Meta;
+
+	/**
+	 * Method getGlobalOwner
+	 *
+	 * @access public
+	 *
+	 * @param  Request $request
+	 *
+	 * @return ?IResource
+	 */
+	public function getGlobalOwner( Request$request )
+	{
+		return null;
+	}
 
 	/**
 	 * 元数据的版本

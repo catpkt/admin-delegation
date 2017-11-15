@@ -46,6 +46,15 @@ final class Meta implements \Serializable
 	protected $controllers= [];
 
 	/**
+	 * Var globalOwner
+	 *
+	 * @access protected
+	 *
+	 * @var    ?IResource
+	 */
+	protected $globalOwner= null;
+
+	/**
 	 * Method getController
 	 *
 	 * @access public
@@ -89,7 +98,8 @@ final class Meta implements \Serializable
 	 */
 	public function loadController( Helpers\Path$path ):array
 	{
-		$controller= $resource= null;
+		$controller= null;
+		$resource= $this->globalOwner;
 
 		foreach( $path->path as list( $name, $id, ) )
 		{
@@ -101,6 +111,20 @@ final class Meta implements \Serializable
 		$controller= $controller? $controller->getSubResource( $path->target ) : $this->getController( $path->target );
 
 		return [ $controller, $resource, ];
+	}
+
+	/**
+	 * Method setGlobalOwner
+	 *
+	 * @access public
+	 *
+	 * @param  ?IResource $owner
+	 *
+	 * @return viod
+	 */
+	public function setGlobalOwner( IResource$owner=null )
+	{
+		$this->globalOwner= $owner;
 	}
 
 	/**
