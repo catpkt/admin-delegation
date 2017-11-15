@@ -36,9 +36,9 @@ class HttpHandler
 	 * @access public
 	 *
 	 * @param  CPE\IEncryptor $encryptor
-	 * @param  Meta $meta
+	 * @param  __\Meta $meta
 	 */
-	public function __construct( CPE\IEncryptor$encryptor, $meta )
+	public function __construct( CPE\IEncryptor$encryptor, __\Meta$meta )
 	{
 		$this->encryptor= $encryptor;
 		$this->meta= $meta;
