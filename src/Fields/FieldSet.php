@@ -139,7 +139,7 @@ final class FieldSet implements \IteratorAggregate
 	 */
 	public function html( string$name, string$label=null ):HtmlField
 	{
-		return $this->addField( new HtmlField( $name, $label ) )->multiLine();
+		return $this->addField( new HtmlField( $name, $label ) );
 	}
 
 	/**
@@ -259,7 +259,7 @@ final class FieldSet implements \IteratorAggregate
 	 */
 	public function picture( string$name, string$label=null ):PictureField
 	{
-		return $this->addField( new PictureField( $name, $label ) )->asTime();
+		return $this->addField( new PictureField( $name, $label ) );
 	}
 
 	/**
@@ -274,7 +274,7 @@ final class FieldSet implements \IteratorAggregate
 	 */
 	public function model( string$name, string$label=null ):ModelField
 	{
-		return $this->addField( new ModelField( $name, $label ) )->asTime();
+		return $this->addField( new ModelField( $name, $label ) );
 	}
 
 	/*\
