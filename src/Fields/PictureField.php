@@ -24,7 +24,7 @@ class PictureField extends AField
 	 */
 	public function size( int$width, int$height )
 	{
-		#
+		$this->rules['size']= [ 'width'=>$width, 'height'=>$height, ];
 	}
 
 }
