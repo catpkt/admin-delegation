@@ -95,7 +95,7 @@ final class Meta implements \Serializable
 		{
 			$controller= $controller? $controller->getSubResource( $name ) : $this->getController( $name );
 
-			$id and $resource= $controller->get( $resource, $id );
+			isset($id) and $resource= $controller->get( $resource, $id );
 		}
 
 		$controller= $controller? $controller->getSubResource( $path->target ) : $this->getController( $path->target );
