@@ -22,6 +22,7 @@ use FenzHelpers\TGetter;
  * $method  dateTime()          增加一个 日期时间 字段
  * $method  date()              增加一个 日期 字段
  * $method  time()              增加一个 时间 字段
+ * $method  picture()           增加一个 图片 字段
  * $method  model()             增加一个 模型 字段
  * $method  addField( AField )  增加一个字段
  */
@@ -244,6 +245,36 @@ final class FieldSet implements \IteratorAggregate
 	public function time( string$name, string$label=null ):DateTimeField
 	{
 		return $this->addField( new DateTimeField( $name, $label ) )->asTime();
+	}
+
+	/**
+	 * 增加一个 图片 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return DateTimeField
+	 */
+	public function picture( string$name, string$label=null ):PictureField
+	{
+		return $this->addField( new PictureField( $name, $label ) )->asTime();
+	}
+
+	/**
+	 * 增加一个 时间 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return ModelField
+	 */
+	public function model( string$name, string$label=null ):ModelField
+	{
+		return $this->addField( new ModelField( $name, $label ) )->asTime();
 	}
 
 	/*\
