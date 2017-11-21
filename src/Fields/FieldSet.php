@@ -15,6 +15,7 @@ use FenzHelpers\TGetter;
  * $method  email()             增加一个 Email 字段
  * $method  multiLineString()   增加一个 多行字符串 字段
  * $method  html()              增加一个 富文本 字段
+ * $method  code()              增加一个 代码 字段
  * $method  number()            增加一个 数字 字段
  * $method  bool()              增加一个 布尔 字段
  * $method  selector()          增加一个 选择 字段
@@ -140,6 +141,21 @@ final class FieldSet implements \IteratorAggregate
 	public function html( string$name, string$label=null ):HtmlField
 	{
 		return $this->addField( new HtmlField( $name, $label ) );
+	}
+
+	/**
+	 * 增加一个 代码 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return CodeField
+	 */
+	public function code( string$name, string$label=null ):CodeField
+	{
+		return $this->addField( new CodeField( $name, $label ) );
 	}
 
 	/**
