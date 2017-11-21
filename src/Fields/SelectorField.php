@@ -23,7 +23,7 @@ class SelectorField extends AField
 	 *
 	 * @return static
 	 */
-	public function option( string$value, string$label, FieldSet$subFields ):self
+	public function option( string$value, string$label, FieldSet$subFields=null ):self
 	{
 		$this->rules['options'][$value]= [ 'label'=>$label, 'sub_fields'=>$subFields, ];
 
@@ -59,22 +59,6 @@ class SelectorField extends AField
 				$this->option( $value, $option );
 			}
 		}
-
-		return $this;
-	}
-
-	/**
-	 * 设置选项标签
-	 *
-	 * @access public
-	 *
-	 * @param  string $label
-	 *
-	 * @return static
-	 */
-	public function optionLabel( string$label ):self
-	{
-		$this->rules['label']= $label;
 
 		return $this;
 	}
