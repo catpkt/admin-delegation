@@ -102,6 +102,22 @@ abstract class AField
 	}
 
 	/**
+	 * 设为只读字段
+	 *
+	 * @access public
+	 *
+	 * @param  bool $showInList
+	 *
+	 * @return static
+	 */
+	public function readOnly( bool$showInList=true ):self
+	{
+		$this->rules['show_in_list']= $showInList;
+
+		return $this;
+	}
+
+	/**
 	 * Static method parseType
 	 *
 	 * @static

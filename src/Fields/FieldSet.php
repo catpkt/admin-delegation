@@ -357,4 +357,18 @@ final class FieldSet implements \IteratorAggregate
 		} );
 	}
 
+	/**
+	 * 可编辑的字段
+	 *
+	 * @access public
+	 *
+	 * @return array
+	 */
+	public function getEditable():array
+	{
+		return array_filter( $this->fields, function( AField$field ){
+			return !$field->getRule( 'readonly', false );
+		} );
+	}
+
 }
