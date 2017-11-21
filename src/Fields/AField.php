@@ -90,11 +90,13 @@ abstract class AField
 	 *
 	 * @access public
 	 *
+	 * @param  bool $showInList
+	 *
 	 * @return static
 	 */
-	public function showInList():self
+	public function showInList( bool$showInList=true ):self
 	{
-		$this->rules['show_in_list']= true;
+		$this->rules['show_in_list']= $showInList;
 
 		return $this;
 	}
