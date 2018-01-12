@@ -114,4 +114,16 @@ class SelectorField extends AField
 		return $this;
 	}
 
+	/**
+	 * Method isScalar
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function isScalar():bool
+	{
+		return !($this->rules['multiple']??null);
+	}
+
 }

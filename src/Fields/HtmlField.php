@@ -11,5 +11,17 @@ namespace CatPKT\AdminDelegation\Fields;
  */
 class HtmlField extends AField
 {
-	#
+
+	/**
+	 * Method isComplex
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function isComplex():bool
+	{
+		return true;
+	}
+
 }

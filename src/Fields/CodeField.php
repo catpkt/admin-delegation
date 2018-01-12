@@ -28,4 +28,16 @@ class CodeField extends AField
 		return $this;
 	}
 
+	/**
+	 * Method isComplex
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function isComplex():bool
+	{
+		return false;
+	}
+
 }

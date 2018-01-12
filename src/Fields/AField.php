@@ -11,6 +11,78 @@ abstract class AField
 	use TGetter;
 
 	/**
+	 * Constant IS_SCALAR
+	 *
+	 * @access public
+	 *
+	 * @const    int
+	 */
+	const IS_SCALAR= 0;
+
+	/**
+	 * Constant IS_COMPLEX
+	 *
+	 * @access public
+	 *
+	 * @const    int
+	 */
+	const IS_COMPLEX= 1;
+
+	/**
+	 * Constant IS_SIMPLE
+	 *
+	 * @access public
+	 *
+	 * @const    int
+	 */
+	const IS_SIMPLE= 0;
+
+	/**
+	 * Constant IS_ARRAY
+	 *
+	 * @access public
+	 *
+	 * @const    int
+	 */
+	const IS_ARRAY= 2;
+
+	/**
+	 * Constant DATUM_SCALAR
+	 *
+	 * @access public
+	 *
+	 * @const    int
+	 */
+	const DATUM_SIMPLE_SCALAR= 0;
+
+	/**
+	 * Constant DATUM_COMPLEX_SCALAR
+	 *
+	 * @access public
+	 *
+	 * @const    int
+	 */
+	const DATUM_COMPLEX_SCALAR= 1;
+
+	/**
+	 * Constant DATUM_SIMPLE_ARRAY
+	 *
+	 * @access public
+	 *
+	 * @const    int
+	 */
+	const DATUM_SIMPLE_ARRAY= 2;
+
+	/**
+	 * Constant DATUM_COMPLEX_ARRAY
+	 *
+	 * @access public
+	 *
+	 * @const    int
+	 */
+	const DATUM_COMPLEX_ARRAY= 3;
+
+	/**
 	 * Var rules
 	 *
 	 * @access protected
@@ -196,6 +268,54 @@ abstract class AField
 	public function getRule( string$name, $default=null )
 	{
 		return $this->rules[$name]??$default;
+	}
+
+	/**
+	 * Method isScalar
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function isScalar():bool
+	{
+		return true;
+	}
+
+	/**
+	 * Method isArray
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function isArray():bool
+	{
+		return !$this->isScalar();
+	}
+
+	/**
+	 * Method isComplex
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function isComplex():bool
+	{
+		return false;
+	}
+
+	/**
+	 * Method getDatumType
+	 *
+	 * @access public
+	 *
+	 * @return int
+	 */
+	public function getDatumType():int
+	{
+		return ($this->isArray())|($this->isComplex()<1);
 	}
 
 }

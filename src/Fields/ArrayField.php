@@ -277,4 +277,16 @@ class ArrayField extends AField
 		return $this->addField( ModelField::class );
 	}
 
+	/**
+	 * Method isScalar
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function isScalar():bool
+	{
+		return false;
+	}
+
 }
