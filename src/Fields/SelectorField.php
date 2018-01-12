@@ -64,24 +64,6 @@ class SelectorField extends AField
 	}
 
 	/**
-	 * 设置子字段集
-	 *      在本字段勾选或不勾选时才填写
-	 *
-	 * @access public
-	 *
-	 * @param  FieldSet $trueFields   勾上时可用的 字段集
-	 * @param  FieldSet $falseFields  不勾时可用的 字段集
-	 *
-	 * @return static
-	 */
-	public function subFields( FieldSet$trueFields=null, FieldSet$falseFields=null ):self
-	{
-		$this->rules['sub_fields']= [ $falseFields, $trueFields, ];
-
-		return $this;
-	}
-
-	/**
 	 * 设为 可多选
 	 *
 	 * @access public
