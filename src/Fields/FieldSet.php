@@ -387,4 +387,30 @@ final class FieldSet implements \IteratorAggregate
 		} );
 	}
 
+	/**
+	 * 合并多个字段集
+	 *
+	 * @static
+	 *
+	 * @access public
+	 *
+	 * @param  self ...$fieldSets
+	 *
+	 * @return self
+	 */
+	public static function merge( self...$fieldSets ):self
+	{
+		$merged= new self();
+
+		$merged->fields= array_merge(
+			array_map(
+				function( self$fieldSet ){
+					return $fieldSet->fields;
+				}, $fieldSets
+			)
+		);
+
+		return $merged;
+	}
+
 }
