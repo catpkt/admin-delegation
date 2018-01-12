@@ -318,4 +318,18 @@ abstract class AField
 		return ($this->isArray())|($this->isComplex()<1);
 	}
 
+	/**
+	 * Method activedSubFields
+	 *
+	 * @access public
+	 *
+	 * @param  mixed $value
+	 *
+	 * @return ?FiledSet
+	 */
+	public function activedSubFields( $value )
+	{
+		return null;
+	}
+
 }

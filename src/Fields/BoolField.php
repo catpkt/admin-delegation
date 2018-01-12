@@ -46,4 +46,18 @@ class BoolField extends AField
 		return $this;
 	}
 
+	/**
+	 * Method activedSubFields
+	 *
+	 * @access public
+	 *
+	 * @param  mixed $value
+	 *
+	 * @return ?FiledSet
+	 */
+	public function activedSubFields( $value )
+	{
+		return ($this->rules['sub_fields']??[])[(int)!!$value]??null;
+	}
+
 }

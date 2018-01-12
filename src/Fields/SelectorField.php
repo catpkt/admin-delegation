@@ -126,4 +126,37 @@ class SelectorField extends AField
 		return !($this->rules['multiple']??null);
 	}
 
+	/**
+	 * Method activedSubFields
+	 *
+	 * @access public
+	 *
+	 * @param  mixed $value
+	 *
+	 * @return ?FiledSet
+	 */
+	public function activedSubFields( $value )
+	{
+		$options= $this->rules['options']??[];
+
+		if( $this->isScalar() )
+		{
+			return ($options[$value]??[])['sub_fields']??null;
+		}
+		else
+		{
+			$activedSubFieldSets= array_filter(
+				array_map( function( $value )use( $options ){
+					return ($options[$value]??null)['sub_fields']??null;
+				}, $value )
+			);
+
+			if( $activedSubFieldSets )
+				return FieldSet::merge( ...$activedSubFieldSets );
+
+			else
+				return null;
+		}
+	}
+
 }
