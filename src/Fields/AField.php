@@ -315,7 +315,7 @@ abstract class AField
 	 */
 	public function getDatumType():int
 	{
-		return ($this->isArray())|($this->isComplex()<1);
+		return ($this->isArray()<<1)|($this->isComplex());
 	}
 
 	/**
