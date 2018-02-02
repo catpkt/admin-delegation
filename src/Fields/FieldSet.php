@@ -309,6 +309,21 @@ final class FieldSet implements \IteratorAggregate
 		return $this->addField( new ArrayField( $name, $label ) );
 	}
 
+	/**
+	 * 增加一个 矩阵 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return MatrixField
+	 */
+	public function matrix( string$name, string$label=null ):MatrixField
+	{
+		return $this->addField( new MatrixField( $name, $label ) );
+	}
+
 	/*\
 	 * ┌┘
 	 *─┤ 以上为后台委托者需要关心的部分
