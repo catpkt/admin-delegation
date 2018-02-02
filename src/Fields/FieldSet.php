@@ -295,6 +295,21 @@ final class FieldSet implements \IteratorAggregate
 	}
 
 	/**
+	 * 增加一个 组合 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return GroupField
+	 */
+	public function group( string$name, string$label=null ):GroupField
+	{
+		return $this->addField( new GroupField( $name, $label ) );
+	}
+
+	/**
 	 * 增加一个 数组 字段
 	 *
 	 * @access public

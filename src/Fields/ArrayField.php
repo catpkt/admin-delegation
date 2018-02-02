@@ -278,6 +278,21 @@ class ArrayField extends AField
 	}
 
 	/**
+	 * 设置元素为 组合 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return GroupField
+	 */
+	public function group():GroupField
+	{
+		return $this->addField( GroupField::class );
+	}
+
+	/**
 	 * Method isScalar
 	 *
 	 * @access public
