@@ -193,14 +193,16 @@ abstract class AResourceController implements Helpers\IResourceMeta
 	 *
 	 * @param  self ...$subResources
 	 *
-	 * @return void
+	 * @return self
 	 */
-	final public function setSubResource( self...$subResources )
+	final public function setSubResource( self...$subResources ):self
 	{
 		foreach( $subResources as $subResource )
 		{
 			$this->subResources[$subResource->name]= $subResource;
 		}
+
+		return $this;
 	}
 
 	/*\
