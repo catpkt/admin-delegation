@@ -127,6 +127,8 @@ class SelectorField extends AField
 		}
 		else
 		{
+			if(!( is_array( $value ) )) return null;
+
 			$activedSubFieldSets= array_filter(
 				array_map( function( $value )use( $options ){
 					return ($options[$value]??null)['sub_fields']??null;
