@@ -25,6 +25,7 @@ use FenzHelpers\TGetter;
  * $method  time()              增加一个 时间 字段
  * $method  picture()           增加一个 图片 字段
  * $method  model()             增加一个 模型 字段
+ * $method  resource()          增加一个 资源 字段
  * $method  array()             增加一个 数组 字段
  * $method  addField( AField )  增加一个字段
  */
@@ -292,6 +293,21 @@ final class FieldSet implements \IteratorAggregate
 	public function model( string$name, string$label=null ):ModelField
 	{
 		return $this->addField( new ModelField( $name, $label ) );
+	}
+
+	/**
+	 * 增加一个 资源 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return ResourceField
+	 */
+	public function resource( string$name, string$label=null ):ResourceField
+	{
+		return $this->addField( new ResourceField( $name, $label ) );
 	}
 
 	/**
