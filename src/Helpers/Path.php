@@ -86,4 +86,38 @@ class Path
 		return $this->path;
 	}
 
+	/**
+	 * Method changeTarget
+	 *
+	 * @access public
+	 *
+	 * @param  mixed $target
+	 *
+	 * @return self
+	 */
+	public function changeTarget( $target ):self
+	{
+		$new= new static( $target );
+
+		$new->path= $this->path;
+
+		return $new;
+	}
+
+	/**
+	 * Method super
+	 *
+	 * @access public
+	 *
+	 * @return self
+	 */
+	public function super():self
+	{
+		$new= clone $this;
+
+		array_pop( $new->path );
+
+		return $new;
+	}
+
 }
