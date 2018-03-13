@@ -20,11 +20,13 @@ class PictureField extends AField
 	 * @param  int $width
 	 * @param  int $height
 	 *
-	 * @return viod
+	 * @return static
 	 */
-	public function size( int$width, int$height )
+	public function size( int$width, int$height ):self
 	{
 		$this->rules['size']= [ 'width'=>$width, 'height'=>$height, ];
+
+		return $this;
 	}
 
 }

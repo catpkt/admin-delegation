@@ -19,11 +19,13 @@ class GroupField extends AField
 	 *
 	 * @param  FieldSet $fields
 	 *
-	 * @return viod
+	 * @return static
 	 */
-	public function fields( FieldSet$fields )
+	public function fields( FieldSet$fields ):self
 	{
 		$this->rules['fields']= $fields;
+
+		return $this;
 	}
 
 }

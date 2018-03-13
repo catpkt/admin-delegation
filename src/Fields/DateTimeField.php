@@ -15,9 +15,9 @@ class DateTimeField extends AField
 	 *
 	 * @access public
 	 *
-	 * @return viod
+	 * @return static
 	 */
-	public function asTime()
+	public function asTime():self
 	{
 		$this->rules['type']= 'time';
 
@@ -29,9 +29,9 @@ class DateTimeField extends AField
 	 *
 	 * @access public
 	 *
-	 * @return viod
+	 * @return static
 	 */
-	public function asDate()
+	public function asDate():self
 	{
 		$this->rules['type']= 'date';
 
