@@ -18,13 +18,14 @@ final class Meta implements \Serializable
 	 *
 	 * @access public
 	 *
-	 * @param  AResourceController $controller
+	 * @param  AResourceController $controllers
 	 *
 	 * @return viod
 	 */
-	public function addResourceController( AResourceController$controller )
+	public function addResourceController( AResourceController...$controllers )
 	{
-		$this->controllers[$controller->name]= $controller;
+		foreach( $controllers as $controller )
+			$this->controllers[$controller->name]= $controller;
 	}
 
 	/*\
