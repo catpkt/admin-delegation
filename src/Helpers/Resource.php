@@ -80,6 +80,18 @@ class Resource implements __\IResource, \ArrayAccess
 	}
 
 	/**
+	 * Method getResourceMeta
+	 *
+	 * @access public
+	 *
+	 * @return ResourceMeta
+	 */
+	public function getResourceMeta():ResourceMeta
+	{
+		return $this->resource;
+	}
+
+	/**
 	 * Method __toString
 	 *
 	 * @access public
