@@ -109,15 +109,30 @@ class Path
 	 *
 	 * @access public
 	 *
-	 * @return self
+	 * @return [?self,int|string,]
 	 */
-	public function super():self
+	public function super():array
 	{
+		if( $this->isRoot() )
+			return null;
+		
 		$new= clone $this;
-
-		array_pop( $new->path );
-
-		return $new;
+		
+		list( $new->target, $id, )= array_pop( $new->path );
+		
+		return [ $new, $id, ];
 	}
-
+	
+	/**
+	 * Method isRoot
+	 *
+	 * @access public
+	 *
+	 * @return bool
+	 */
+	public function isRoot():bool
+	{
+		return !count( $this->path );
+	}
+	
 }

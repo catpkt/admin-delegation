@@ -112,7 +112,7 @@ class ResourceField extends AField
 			switch( $value )
 			{
 				case '..':{
-					$path= $path->super();
+					list( $path, )= $path->super();
 				}break;
 
 				case '.':{
