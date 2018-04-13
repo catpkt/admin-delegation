@@ -119,6 +119,10 @@ class ResourceField extends AField
 					continue;
 				}break;
 
+				case '':{
+					$path= new __\Helpers\Path( $target );
+				}break;
+
 				default:{
 					$path->addPath( ...explode( ':', $value ) );
 				}break;
