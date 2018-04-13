@@ -143,6 +143,34 @@ class ResourceMeta implements IResourceMeta
 	}
 
 	/**
+	 * Method isForbidden
+	 *
+	 * @access public
+	 * 
+	 * @param string $action
+	 *
+	 * @return bool
+	 */
+	public function isForbidden( string$action ):bool
+	{
+		return in_array( $action, $this->forbiddenActions );
+	}
+
+	/**
+	 * Method isAllowed
+	 *
+	 * @access public
+	 * 
+	 * @param string $action
+	 *
+	 * @return bool
+	 */
+	public function isAllowed( string$action ):bool
+	{
+		return !$this->isForbidden( $action );
+	}
+
+	/**
 	 * Method getSubResources
 	 *
 	 * @access public
