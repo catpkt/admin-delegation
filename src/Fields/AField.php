@@ -178,13 +178,13 @@ abstract class AField
 	 *
 	 * @access public
 	 *
-	 * @param  bool $showInList
+	 * @param  bool $readOnly
 	 *
 	 * @return static
 	 */
-	public function readOnly( bool$showInList=true ):self
+	public function readOnly( bool$readOnly=true ):self
 	{
-		$this->rules['show_in_list']= $showInList;
+		$this->rules['read_only']= $readOnly;
 
 		return $this;
 	}
