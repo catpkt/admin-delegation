@@ -26,6 +26,7 @@ use FenzHelpers\TGetter;
  * $method  picture()           增加一个 图片 字段
  * $method  model()             增加一个 模型 字段
  * $method  resource()          增加一个 资源 字段
+ * $method  location()          增加一个 地理坐标 字段
  * $method  array()             增加一个 数组 字段
  * $method  addField( AField )  增加一个字段
  */
@@ -308,6 +309,21 @@ final class FieldSet implements \IteratorAggregate
 	public function resource( string$name, string$label=null ):ResourceField
 	{
 		return $this->addField( new ResourceField( $name, $label ) );
+	}
+
+	/**
+	 * 增加一个 地理坐标 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return LocationField
+	 */
+	public function location( string$name, string$label=null ):LocationField
+	{
+		return $this->addField( new LocationField( $name, $label ) );
 	}
 
 	/**

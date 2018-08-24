@@ -293,6 +293,21 @@ class ArrayField extends AField
 	}
 
 	/**
+	 * 设置元素为 地理坐标 字段
+	 *
+	 * @access public
+	 *
+	 * @param  string $name
+	 * @param  string $label
+	 *
+	 * @return LocationField
+	 */
+	public function location():LocationField
+	{
+		return $this->addField( LocationField::class );
+	}
+
+	/**
 	 * 设置元素为 组合 字段
 	 *
 	 * @access public
